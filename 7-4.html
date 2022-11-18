@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        title: {
+            text: '第四个ECharts实例'
+        },
+        tooltip:{
+            trigger:'axis',
+            axisPointer:{
+            //show:true,
+            // type:'cross',
+            // lineStyle:{
+            //     type:'dashed',
+            //     width:1
+            // }
+          },
+          formatter: function(v){
+                return v[0].data[0] + 'cm' + '--' + v[0].data[1] + 'cm';
+          }
+        },
+        xAxis :{},
+        yAxis :{},
+        series: [{
+           symbolSize : 30,
+           data : [
+            [1,2],
+            [8,6.95],
+            [13.0,7.58],
+            [9.0,8.81],
+            [11.0,8.33],
+            [14.0,9.96],
+            [6.0,7.74],
+            [4.0,4.26],
+            [12.0,14],
+            [7.0,4.82],
+            [5.0,5.68],
+           ],         
+            type :"scatter"
+        }]
+    };
+    myChart.setOption(option);
+</script>
+</html>

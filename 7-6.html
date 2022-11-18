@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第六个ECharts实例</title>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script>
+        var myChart = echarts.init(document.getElementById('main'));
+        var symbolSize = 10;
+        var data = [[15, 0],[-50, 10],[-56.5, 20],[-46.5, 30],[15, 40]];
+        var option = {
+            title: {
+            text: '第六个ECharts 实例'
+        },
+        tooltip:{
+            trigger:'axis',
+            axisPointer:{
+            //show:true,
+            // type:'cross',
+            // lineStyle:{
+            //     type:'dashed',
+            //     width:1
+            // }
+          },
+          formatter: function(v){
+                return v[0].data[0] + 'cm' + '--' + v[0].data[1] + 'cm';
+          }
+        },
+            xAxis: {
+                min: -100,
+                max: 100,
+                type: 'value',
+                axisLine: {onZero: false}
+            },
+            yAxis: {
+                min: -60,
+                max: 60,
+                type: 'value',
+                axisLine: {onZero: false}
+            },
+            series: [
+                {
+                    id: 'a',
+                    type: 'line',
+                    smooth: true,
+                    symbolSize: symbolSize,
+                    data: data
+                }
+            ]
+        };
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
+

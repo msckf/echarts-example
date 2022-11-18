@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二个ECharts实例</title>
+    <script src="js/echarts.min.js"></script>
+</head>
+<body>
+    <div id="main" style="width: 600px;height:400px;"></div>
+</body>
+<script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+        title: {
+            text: '第二个ECharts实例'
+        },
+        legend: {
+        orient: 'horizontal',
+        x:'center',
+        y:'bottom',
+        data: ['视频广告', '事件广告','邮件营销','市场营销','搜索引擎']     
+    },
+        series: [{
+            name: '访问来源',
+            type: 'pie',
+            radius: '40%',
+            data: [
+                {value:235,name: '视频广告'},
+                {value:274,name: '事件广告'},
+                {value:310,name: '邮件营销'},
+                {value:335,name: '市场营销'},
+                {value:400,name: '搜索引擎'},
+            ]
+        }
+    ]
+    };
+    myChart.setOption(option);
+</script>
+</html>
