@@ -12,64 +12,51 @@
 </body>
 <script>
     var myChart = echarts.init(document.getElementById('main'));
- option = {
-  title: {
-    text: 'Funnel'
-  },
-  tooltip: {
-    trigger: 'item',
-    formatter: '{a} <br/>{b} : {c}%'
-  },
-  toolbox: {
-    feature: {
-      dataView: { readOnly: false },
-      restore: {},
-      saveAsImage: {}
-    }
-  },
-  legend: {
-    data: ['Show', 'Click', 'Visit', 'Inquiry', 'Order']
-  },
-  series: [
+    option = {
+        tooltip: {
+        trigger:'item',
+        axisPointer: {
+        formatter: function(v){
+                return params.data.value + 'cm' + ':' + params.data.value;
+          }
+        }
+    },
+     series: [
     {
-      name: 'Funnel',
-      type: 'funnel',
-      left: '10%',
-      top: 60,
-      bottom: 60,
-      width: '80%',
-      min: 0,
-      max: 100,
-      minSize: '0%',
-      maxSize: '100%',
-      sort: 'descending',
-      gap: 2,
-      label: {
-        show: true,
-        position: 'inside'
-      },
-      labelLine: {
-        length: 10,
-        lineStyle: {
-          width: 1,
-          type: 'solid'
-        }
-      },
-      itemStyle: {
-        borderColor: '#fff',
-        borderWidth: 1
-      },
-      emphasis: {
-        label: {
-          fontSize: 20
-        }
-      },
+      type: 'treemap',
+      roam: 'false',
+      nodeClick:false,
       data: [
-        { value: 60, name: 'Visit' },
-        { value: 40, name: 'Inquiry' },
-        { value: 20, name: 'Order' },
-        { value: 80, name: 'Click' },
-        { value: 100, name: 'Show' }
+        {
+          name: 'nodeA',
+          value: 10,
+          children: [
+            {
+              name: '我的节点',
+              value: 4
+            },
+            {
+              name: 'nodeAb',
+              value: 6
+            }
+          ]
+        },
+        {
+          name: 'nodeB',
+          value: 20,
+          children: [
+            {
+              name: 'nodeBa',
+              value: 20,
+              children: [
+                {
+                  name: 'nodeBa1',
+                  value: 20
+                }
+              ]
+            }
+          ]
+        }
       ]
     }
   ]
