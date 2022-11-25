@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>echarts折线图</title>
+		<script src="js/echarts.min.js"></script>
+	</head>
+	<body>
+		<div style='width: 600px; height: 400px;'></div>
+		<script>
+            //另外3个参数为（tooltip,magicType,dataZoom）
+			let myChart = echarts.init(document.querySelector("div")) 
+					var option =  {
+				tooltip: {
+                       trigger: "axis",
+					   axisPointer:{
+						type: "cross"
+					   }					   
+				},
+                magicType :{//动态类型切换
+				    show: true,
+				    title:"切换",//各个类型的标题文本，可以分别配置。
+				    type: ['line', 'stack'],//启用的动态类型，包括'line'（切换为折线图）, 'bar'（切换为柱状图）, 'stack'（切换为堆叠模式）, 'tiled'（切换为平铺模式）
+				    },
+                dataZoom :{//数据区域缩放。目前只支持直角坐标系的缩放
+					show: true,//是否显示该工具。
+				    title:"缩放",//缩放和还原的标题文本
+				    xAxisIndex:0,
+				    yAxisIndex:false,
+					},
+				xAxis: {
+					type: "category",
+					data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+					boundaryGap:false  //boundaryGap 可以配置为 true 和 false。默认为 true，这时候刻度只是作为分隔线，标签和数据点都会在两个刻度之间的带(band)中间。
+				},
+				yAxis: {
+					type: "value",
+					scale: true, //只在数值轴中（type: 'value'）有效。是否是脱离 0 值比例。
+					splitLine: {
+						show: true,
+						lineStyle:{
+							type:'dashed',
+							color:'#55b9b4'
+						}
+                 }
+				},
+				series: [{
+					name: "某App一周内的用户注册数据:",
+					data: [1600, 2500, 2400, 2000, 2400, 2000, 2100],
+					type: 'line',
+					smooth: true,//是否平滑曲线显示。
+					symbolSize: 5,				
+			        symbol: 'emptyCircle',
+					lineStyle: { //设置线条类型
+						color: {
+						type: "dotted",
+						x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                         colorStops: [{
+                            offset: 0, color: 'rgba(255,0,0,0.8)'
+                        }, {
+                            offset: 1, color: 'rgba(0,0,238,0.8)' 
+                        }],				
+						     global: false 
+					   }
+					},
+					areaStyle: {//区域填充样式。设置后显示成区域面积图。
+                        color: {
+                        type: 'linear',
+                        x: 0,
+                        y: 0,
+                        x2: 0,
+                        y2: 1,
+                         colorStops: [{
+                            offset: 0, color: 'rgba(58,132,255, 0.6)' 
+                        }, {
+                            offset: 1, color: 'rgba(58,132,255, 0)' 
+                        }],
+                                global: false 
+                            }
+					},
+					markLine: {
+						data: [{			
+							type: 'average'
+						}],
+						
+						
+					},
+					markPoint: {
+						data: [{
+							type: "max"
+						}, {
+							type: "min"
+						}, ]
+					},
+				}]       
+			}
+			myChart.setOption(option)
+		</script>
+	</body>
+</html>
